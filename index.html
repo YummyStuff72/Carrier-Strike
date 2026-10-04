@@ -1,1 +1,60 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Carrier Strike — Prototype 0.2</title><link rel="stylesheet" href="styles.css"></head><body><div id="game"><canvas id="map"></canvas><div id="topbar"><div class="brand">CARRIER STRIKE <span>PROTOTYPE 0.2</span></div><div class="clock" id="clock">Day 1 · 00:00</div><div class="speeds"><button data-speed="1" class="speed active">1×</button><button data-speed="2" class="speed">2×</button><button data-speed="5" class="speed">5×</button></div></div><aside id="leftPanel"><div class="panelTitle">CARRIER</div><div class="stat"><span>Hull</span><b id="hull">800 / 800</b></div><div class="bar"><i id="hullBar"></i></div><div class="stat"><span>Ship Fuel</span><b id="shipFuel"></b></div><div class="bar"><i id="shipFuelBar"></i></div><div class="stat"><span>Aviation Fuel</span><b id="airFuel"></b></div><div class="bar"><i id="airFuelBar"></i></div><div class="stat"><span>Money</span><b id="money"></b></div><div class="stat"><span>Reputation</span><b id="rep">0</b></div><hr><div class="panelTitle">AIR WING</div><div class="stat"><span>Scouts</span><b id="scouts">10 / 10</b></div><div class="stat"><span>Fighters</span><b id="fighters">40 / 40</b></div><div class="stat"><span>Dive Bombers</span><b id="bombers">20 / 20</b></div><button id="missionBtn" class="wide">MISSION CENTER</button><button id="refuelBtn" class="wide">REFUEL</button></aside><aside id="rightPanel"><div class="panelTitle">SELECTED</div><div id="selectedText">Click the carrier, an island, or a ship.</div><div id="selectedActions"></div></aside><div id="bottomBar"><div><b>Throttle</b><input id="throttle" type="range" min="-20" max="100" value="60"><span id="throttleVal">60%</span></div><div class="hint">WASD smooth camera · Wheel zoom · Click carrier then click waypoints · Right-click direct route</div></div><div id="missionModal" class="modal hidden"><div class="modalBox"><button class="close" id="closeMission">×</button><h2>Mission Center</h2><p>Click the map for the mission zone, then click again for the carrier intercept/return point.</p><div class="missionOptions"><label>Intent<select id="intent"><option>Scout</option><option>Attack</option><option>Precision Attack</option><option>Air Battle</option><option>Sea Battle</option></select></label><label>Scouts<input id="scoutQty" type="number" min="0" max="10" value="0"></label><label>Fighters<input id="fighterQty" type="number" min="0" max="40" value="4"></label><label>Dive Bombers<input id="bomberQty" type="number" min="0" max="20" value="2"></label></div><button id="enginesFree" class="primary">ENGINES FREE</button><p id="missionStatus">Click the map to choose the mission zone.</p></div></div><div id="storeModal" class="modal hidden"><div class="modalBox"><button class="close" id="closeStore">×</button><h2>Island Store</h2><p>Aircraft are available at U.S. islands. This prototype uses simple purchases.</p><div class="storeGrid"><button class="buy" data-type="scout" data-cost="150">BUY SCOUT — $150</button><button class="buy" data-type="fighter" data-cost="250">BUY FIGHTER — $250</button><button class="buy" data-type="bomber" data-cost="300">BUY DIVE BOMBER — $300</button></div><p id="storeStatus">Select a purchase.</p></div></div></div><script src="game.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrier Strike — Prototype 0.1</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="game">
+    <canvas id="map" aria-label="Carrier Strike map"></canvas>
+    <div id="topbar">
+      <div class="brand">CARRIER STRIKE <span>PROTOTYPE</span></div>
+      <div class="clock" id="clock">Day 1 · 00:00</div>
+      <div class="speeds"><button data-speed="1" class="speed active">1×</button><button data-speed="2" class="speed">2×</button><button data-speed="5" class="speed">5×</button></div>
+    </div>
+    <aside id="leftPanel">
+      <div class="panelTitle">CARRIER</div>
+      <div class="stat"><span>Hull</span><b id="hull">800 / 800</b></div>
+      <div class="bar"><i id="hullBar"></i></div>
+      <div class="stat"><span>Ship Fuel</span><b id="shipFuel">32,400 / 32,400</b></div>
+      <div class="bar"><i id="shipFuelBar"></i></div>
+      <div class="stat"><span>Aviation Fuel</span><b id="airFuel">9,225 / 9,225</b></div>
+      <div class="bar"><i id="airFuelBar"></i></div>
+      <div class="stat"><span>Money</span><b id="money">$1,000</b></div>
+      <div class="stat"><span>Reputation</span><b id="rep">0</b></div>
+      <hr />
+      <div class="panelTitle">AIR WING</div>
+      <div class="stat"><span>Scouts</span><b id="scouts">10 / 10</b></div>
+      <div class="stat"><span>Fighters</span><b id="fighters">40 / 40</b></div>
+      <div class="stat"><span>Dive Bombers</span><b id="bombers">20 / 20</b></div>
+      <button id="missionBtn" class="wide">MISSION CENTER</button>
+      <button id="refuelBtn" class="wide">REFUEL AT CARRIER</button>
+    </aside>
+    <aside id="rightPanel">
+      <div class="panelTitle">SELECTED</div>
+      <div id="selectedText">Click the carrier, an island, or a ship.</div>
+      <div id="selectedActions"></div>
+    </aside>
+    <div id="bottomBar">
+      <div><b>Throttle</b><input id="throttle" type="range" min="-20" max="100" value="60" /><span id="throttleVal">60%</span></div>
+      <div class="hint">WASD move camera · Wheel zoom · Click carrier, then click to set waypoint · Right-click direct route</div>
+    </div>
+    <div id="missionModal" class="modal hidden">
+      <div class="modalBox">
+        <button class="close" id="closeMission">×</button>
+        <h2>Mission Center</h2>
+        <p>Prototype mission planning. Click a point on the map to set the mission area, then another point for the intercept point.</p>
+        <div class="missionOptions">
+          <label>Intent <select id="intent"><option>Scout</option><option>Attack</option><option>Precision Attack</option><option>Air Battle</option><option>Sea Battle</option></select></label>
+          <label>Aircraft <select id="aircraft"><option>Scout</option><option>Fighter</option><option>Dive Bomber</option></select></label>
+        </div>
+        <button id="enginesFree" class="primary">ENGINES FREE</button>
+        <p id="missionStatus">Select the mission area on the map.</p>
+      </div>
+    </div>
+  </div>
+  <script src="game.js"></script>
+</body>
+</html>
